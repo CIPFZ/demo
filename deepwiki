@@ -1,0 +1,67 @@
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.11/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/venv/lib/python3.11/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    raise err
+  File "/opt/venv/lib/python3.11/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.11/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/opt/venv/lib/python3.11/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "/opt/venv/lib/python3.11/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "/opt/venv/lib/python3.11/site-packages/urllib3/connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "/opt/venv/lib/python3.11/site-packages/urllib3/connection.py", line 753, in connect
+    self.sock = sock = self._new_conn()
+                       ^^^^^^^^^^^^^^^^
+  File "/opt/venv/lib/python3.11/site-packages/urllib3/connection.py", line 213, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPSConnection object at 0x7e3052ad3550>: Failed to establish a new connection: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/venv/lib/python3.11/site-packages/requests/adapters.py", line 667, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/opt/venv/lib/python3.11/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/opt/venv/lib/python3.11/site-packages/urllib3/util/retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='openaipublic.blob.core.windows.net', port=443): Max retries exceeded with url: /encodings/cl100k_base.tiktoken (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7e3052ad3550>: Failed to establish a new connection: [Errno 111] Connection refused'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/app/api/main.py", line 28, in <module>
+    from api.config import GOOGLE_API_KEY
+  File "/app/api/config.py", line 10, in <module>
+    from api.openai_client import OpenAIClient
+  File "/app/api/openai_client.py", line 23, in <module>
+    from adalflow.utils.lazy_import import safe_import, OptionalPackages
+  File "/opt/venv/lib/python3.11/site-packages/adalflow/__init__.py", line 74, in <module>
+    from adalflow.components.data_process.text_splitter import TextSplitter
+  File "/opt/venv/lib/python3.11/site-packages/adalflow/components/data_process/__init__.py", line 3, in <module>
+    from .text_splitter import TextSplitter
+  File "/opt/venv/lib/python3.11/site-packages/adalflow/components/data_process/text_splitter.py", line 47, in <module>
+    class TextSplitter(DataComponent):
+  File "/opt/venv/lib/python3.11/site-packages/adalflow/components/data_process/text_splitter.py", line 157, in TextSplitter
+    tokenizer = Tokenizer()
+                ^^^^^^^^^^^
+  File "/opt/venv/lib/python3.11/site-packages/adalflow/core/tokenizer.py", line 25, in __init__
+    self.tokenizer = tiktoken.get_encoding(name)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/venv/lib/python3.11/site-packa
